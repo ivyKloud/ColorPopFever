@@ -1,4 +1,4 @@
-package sound.graphics;
+package view.sound;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -12,13 +12,14 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
+import model.sound.midiPlayer.MidiPlayer;
+import model.sound.midiPlayer.MyNote;
+import model.sound.midiPlayer.exceptions.NonStartedMusic;
+import model.sound.midiPlayer.exceptions.NullSequencerException;
+import model.sound.midiPlayer.exceptions.NullSynthesizerException;
+
 import org.jfugue.Player;
 
-import sound.midiPlayer.MidiPlayer;
-import sound.midiPlayer.MyNote;
-import sound.midiPlayer.exceptions.NonStartedMusic;
-import sound.midiPlayer.exceptions.NullSequencerException;
-import sound.midiPlayer.exceptions.NullSynthesizerException;
 
 public class Window extends JFrame {
 

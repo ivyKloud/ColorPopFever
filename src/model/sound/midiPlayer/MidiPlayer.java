@@ -1,4 +1,4 @@
-package sound.midiPlayer;
+package model.sound.midiPlayer;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -7,11 +7,12 @@ import javax.sound.midi.MidiSystem;
 import javax.sound.midi.Sequencer;
 import javax.sound.midi.Synthesizer;
 
+import model.sound.midiPlayer.exceptions.NonStartedMusic;
+import model.sound.midiPlayer.exceptions.NullSequencerException;
+import model.sound.midiPlayer.exceptions.NullSynthesizerException;
+
 import org.jfugue.Player;
 
-import sound.midiPlayer.exceptions.NonStartedMusic;
-import sound.midiPlayer.exceptions.NullSequencerException;
-import sound.midiPlayer.exceptions.NullSynthesizerException;
 
 
 public class MidiPlayer {

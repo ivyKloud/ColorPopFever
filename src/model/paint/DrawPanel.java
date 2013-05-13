@@ -1,4 +1,4 @@
-package paint;
+package model.paint;
 
 
 import java.awt.Color;

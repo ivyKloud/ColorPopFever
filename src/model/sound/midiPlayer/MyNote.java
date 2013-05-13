@@ -1,4 +1,4 @@
-package sound.midiPlayer;
+package model.sound.midiPlayer;
 
 public class MyNote {
 	private String note;

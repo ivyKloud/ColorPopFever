@@ -1,7 +1,7 @@
-package sound;
+package model.sound;
 
-import sound.graphics.Window;
-import sound.midiPlayer.MidiPlayer;
+import view.sound.Window;
+import model.sound.midiPlayer.MidiPlayer;
 
 public class Main {
 	public static void main(String[] args) {
