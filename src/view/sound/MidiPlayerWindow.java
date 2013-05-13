@@ -21,7 +21,7 @@ import model.sound.midiPlayer.exceptions.NullSynthesizerException;
 import org.jfugue.Player;
 
 
-public class Window extends JFrame {
+public class MidiPlayerWindow extends JFrame {
 
 	/**
 	 * 
@@ -38,7 +38,7 @@ public class Window extends JFrame {
 	private JButton playTransformButton;
 	private ArrayList<MyNote> musicNotes;
 
-	public Window(MidiPlayer p) {
+	public MidiPlayerWindow(MidiPlayer p) {
 
 		this.player = p;
 		this.startPauseButton = new JButton("Start/Pause");
@@ -90,13 +90,13 @@ public class Window extends JFrame {
 						fc.setApproveButtonText("Load");
 						int returnval = fc.showOpenDialog(null);
 						if (returnval == JFileChooser.APPROVE_OPTION) {
-							Window.this.f = fc.getSelectedFile();
+							MidiPlayerWindow.this.f = fc.getSelectedFile();
 							try {
-								Window.this.player.start(Window.this.f);
-								Window.this.hasBegun = true;
-								Window.this.isOnAir = true;
-								Window.this.stopButton.setEnabled(true);
-								Window.this.transformButton.setEnabled(true);
+								MidiPlayerWindow.this.player.start(MidiPlayerWindow.this.f);
+								MidiPlayerWindow.this.hasBegun = true;
+								MidiPlayerWindow.this.isOnAir = true;
+								MidiPlayerWindow.this.stopButton.setEnabled(true);
+								MidiPlayerWindow.this.transformButton.setEnabled(true);
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
@@ -104,12 +104,12 @@ public class Window extends JFrame {
 							JOptionPane.showMessageDialog(null,"File not found.", "Information",JOptionPane.INFORMATION_MESSAGE);
 						}
 					} else {
-						Window.this.player.play();
-						Window.this.isOnAir = true;
+						MidiPlayerWindow.this.player.play();
+						MidiPlayerWindow.this.isOnAir = true;
 					}
 				} else {
-					Window.this.player.pause();
-					Window.this.isOnAir = false;
+					MidiPlayerWindow.this.player.pause();
+					MidiPlayerWindow.this.isOnAir = false;
 				}
 			}
 		});
@@ -118,24 +118,24 @@ public class Window extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				try {
-					Window.this.player.stop();
-					Window.this.stopButton.setEnabled(false);
-					Window.this.transformButton.setEnabled(false);
+					MidiPlayerWindow.this.player.stop();
+					MidiPlayerWindow.this.stopButton.setEnabled(false);
+					MidiPlayerWindow.this.transformButton.setEnabled(false);
 				} catch (NonStartedMusic nsm) {
 					JOptionPane.showMessageDialog(null,"Non started music.", "Information",JOptionPane.INFORMATION_MESSAGE);
 				}
-				Window.this.hasBegun = false;
-				Window.this.isOnAir = false;
+				MidiPlayerWindow.this.hasBegun = false;
+				MidiPlayerWindow.this.isOnAir = false;
 			}
 		});
 		
 		this.transformButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (Window.this.f != null){
+				if (MidiPlayerWindow.this.f != null){
 						try {
-							Window.this.musicNotes = Window.this.player.transform();
-							Window.this.playTransformButton.setEnabled(true);
+							MidiPlayerWindow.this.musicNotes = MidiPlayerWindow.this.player.transform();
+							MidiPlayerWindow.this.playTransformButton.setEnabled(true);
 						} catch (NullSequencerException se) {
 							System.out.println("Null Sequencer !");
 							JOptionPane.showMessageDialog(null,"No loaded file.", "Information",JOptionPane.INFORMATION_MESSAGE);
@@ -152,17 +152,17 @@ public class Window extends JFrame {
 		this.playTransformButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (Window.this.musicNotes != null){
+				if (MidiPlayerWindow.this.musicNotes != null){
 					String musicString = "";
 					Player play = new Player();
 					
-					for(MyNote note : Window.this.musicNotes){
+					for(MyNote note : MidiPlayerWindow.this.musicNotes){
 						musicString += note.getNote()+ " ";
 					}
 					try {
-						Window.this.player.stop();
-						Window.this.stopButton.setEnabled(false);
-						Window.this.transformButton.setEnabled(false);
+						MidiPlayerWindow.this.player.stop();
+						MidiPlayerWindow.this.stopButton.setEnabled(false);
+						MidiPlayerWindow.this.transformButton.setEnabled(false);
 					} catch (NonStartedMusic nsm) {
 						JOptionPane.showMessageDialog(null,"Non started music.", "Information",JOptionPane.INFORMATION_MESSAGE);
 					}
